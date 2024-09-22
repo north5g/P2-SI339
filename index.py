@@ -2,7 +2,7 @@ import csv
 
 # File paths
 csv_file = "client_data_files/meets/37th_Early_Bird_Open_Mens_5000_Meters_HS_Open_5K_24.csv"
-output_file = "LamplighterInvite23.html"
+output_file = "index.html"
 
 # Read the data from the CSV file
 with open(csv_file, newline='', encoding='utf-8') as file:
