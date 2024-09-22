@@ -16,16 +16,18 @@ team_results_link = data[2][0]  # Column C - hyperlink for the team-results sect
 
 # Extract team results (assuming 2 teams starting from row 8, index 7)
 team_results = []
-for i in range(2):
-    row_index = i + 7
+i = 0
+while data[i+7] != []:
+    row_index = i + 7 # all results start at 7
     if row_index < len(data):
         place = data[row_index][0]
         team_name = data[row_index][1]
         team_score = data[row_index][2]
         team_results.append((place, team_name, team_score))
+    i += 1
 
 # Extract athletes (starting from row 28, index 27)
-athletes = data[27:]
+athletes = data[i+7+2:]
 
 # Generate HTML table rows for team results
 team_table_rows = ""
@@ -39,11 +41,11 @@ for place, team_name, team_score in team_results:
 
 # Generate HTML table rows for athletes
 athlete_table_rows = ""
-for athlete in athletes[:2]:
+for athlete in athletes:
     if len(athlete) < 8:
         # Skip incomplete rows
         continue
-    athlete_place = athlete[0]      # Column A - athlete place
+    athlete_place = athlete[0][:-1]      # Column A - athlete place
     athlete_grade = athlete[1]      # Column B - athlete grade
     athlete_name = athlete[2]       # Column C - athlete name
     athlete_link = athlete[3]       # Column D - athlete profile link
@@ -68,8 +70,8 @@ html_content = f'''<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="style.css">
+    <!-- link rel="stylesheet" href="css/reset.css" -->
+    <!-- link rel="stylesheet" href="style.css" -->
     <title>{meet_name} Country Meet</title>
 </head>
 <body>
