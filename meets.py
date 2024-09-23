@@ -38,7 +38,7 @@ def process_csv(csv_file, output_file):
 
     # Generate HTML table rows for athletes
     athlete_table_rows = ""
-    image_folder = "../client_data_files/images/AthleteImages/"
+    image_folder = "client_data_files/images/AthleteImages/"
     racer_not_found = "../client_data_files/public_domain_question_mark.jpg"
     for athlete in athletes:
         if len(athlete) < 8:
@@ -54,6 +54,7 @@ def process_csv(csv_file, output_file):
         athlete_image = athlete[7]      # Column H - athlete profile pic (image filename)
 
         athlete_image_path = os.path.join(image_folder, athlete_image)
+        print(athlete_image_path)
         if os.path.exists(athlete_image_path):
             athlete_table_rows += f'''<tr>
                 <td>{athlete_place}</td>
@@ -61,7 +62,7 @@ def process_csv(csv_file, output_file):
                 <td><a href="{athlete_link}">{athlete_name}</a></td>
                 <td><a href="{team_link}">{athlete_team}</a></td>
                 <td>{athlete_time}</td>
-                <td><img src="{athlete_image_path}" alt="{athlete_name}" width="50"></td>
+                <td><img src="../{athlete_image_path}" alt="{athlete_name}" width="50"></td>
             </tr> '''
         else:
             athlete_table_rows += f'''<tr>
