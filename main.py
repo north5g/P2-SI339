@@ -38,8 +38,7 @@ def process_meets():
                         <th>Meet Name</th>
                     </tr>
                 </thead>
-                <tbody>
-                    {meets_list}
+                <tbody> {meets_list}
                 </tbody>
             </table>
         </section>
