@@ -9,6 +9,7 @@ def process_meets():
     if os.path.exists("meets_pages/"):
        shutil.rmtree("meets_pages/")
     os.makedirs("meets_pages/", exist_ok = True)
+    counter = 0
     for filename in os.listdir(meets_dir):
         if filename.endswith('.csv'):
             csv_path = os.path.join(meets_dir, filename)
@@ -18,6 +19,8 @@ def process_meets():
             <td><a href="{meet_path}">{os.path.splitext(filename)[0]}</a></td>
             </tr> '''
             meets.process_csv(csv_path, meet_path)
+        counter += 1
+        if counter >= 5: break
     
     html_content = f'''<!DOCTYPE html>
         <html lang="en">
